@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Shivani! 🎉</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    
+    <audio id="bgMusic" loop>
+        <source src="assets/images/bg-music.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="blowSound">
+        <source src="assets/images/blow-sound.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="celebMusic" loop>
+        <source src="assets/images/celebration.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="particle-bg" id="particles"></div>
+
+    <main class="app-container">
+        
+        <section id="page-1" class="page active glass-panel">
+            <h1 class="title animate-pop">Happy Birthday <br><span class="highlight">Shivani</span> 🎉
+                <span>11/04/2026</span></h1>
+            <p class="subtext fade-in-delay">A special surprise just for you...</p>
+            <button class="btn primary-btn pulse" onclick="navigate('page-2')">Start the Surprise ✨</button>
+        </section>
+
+        <section id="page-2" class="page glass-panel hidden">
+            <h2 class="title">Make a wish, Shivani! 🎂</h2>
+            <div class="cake-container">
+                <div class="cake">
+                    <div class="candle">
+                        <div class="flame" id="flame"></div>
+                    </div>
+                    <div class="icing"></div>
+                    <div class="sponge"></div>
+                </div>
+            </div>
+            <button class="btn secondary-btn" id="blowBtn" onclick="blowCandles()">Blow out the candles 💨</button>
+            <div id="continue-section" class="hidden" style="margin-top: 20px;">
+                <p class="subtext">Yay! 💖</p>
+                <button class="btn primary-btn" onclick="navigate('page-3')">Continue Celebration 🎉</button>
+            </div>
+        </section>
+
+        <section id="page-3" class="page glass-panel hidden">
+            <h2 class="title">You are amazing! 💖</h2>
+            <div class="message-carousel" id="carousel">
+                <p class="carousel-text active">Keep smiling always 😊</p>
+                <p class="carousel-text hidden">Wishing you endless happiness 🎂</p>
+                <p class="carousel-text hidden">May all your dreams come true ✨</p>
+            </div>
+            <div class="photo-gallery">
+               
+                    <img src="assets/images/photo1.png" alt="Shivani's Birthday Photo">
+               
+            </div>
+            <button class="btn primary-btn pulse" style="margin-top: 30px;" onclick="navigate('page-4')">Final Surprise 🎁</button>
+        </section>
+
+        <section id="page-4" class="page glass-panel hidden">
+            <h1 class="title glow-text">Thank you for being so special, Shivani 💫</h1>
+            <p class="subtext fade-in-delay">May your life be filled with love, laughter, and endless success.</p>
+            <button class="btn secondary-btn mt-2" onclick="location.reload()">Replay Experience 🔄</button>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

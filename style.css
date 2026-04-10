@@ -1,0 +1,223 @@
+/* --- Variables & Setup --- */
+:root {
+    --primary-color: #ff9a9e;
+    --secondary-color: #fecfef;
+    --accent-color: #f6d365;
+    --text-dark: #4a4a4a;
+    --text-light: #ffffff;
+    --font-heading: 'Dancing Script', cursive;
+    --font-body: 'Poppins', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevents scrollbar during animations */
+    color: var(--text-dark);
+}
+
+/* --- UI Components --- */
+/* Container for the gallery */
+.photo-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px; /* Adds depth for 3D hover effects */
+    margin: 20px 0;
+}
+
+/* The actual image styling */
+.photo-gallery img {
+    width: 250px;           /* Adjust size as needed */
+    height: 320px;
+    object-fit: cover;      /* Prevents image stretching */
+    border-radius: 20px;
+    
+    /* Premium Glass Frame Effect */
+    border: 8px solid rgba(255, 255, 255, 0.4); 
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.2), 
+        0 0 15px rgba(255, 255, 255, 0.5);
+    
+    /* Smooth Transition for hover */
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
+    
+    /* Gentle Floating Animation */
+    animation: floatingImage 4s ease-in-out infinite;
+}
+
+/* Interaction: Tilts and glows when hovered */
+.photo-gallery img:hover {
+    transform: rotateY(10deg) rotateX(5deg) scale(1.05);
+    box-shadow: 
+        0 25px 50px rgba(255, 154, 158, 0.4), 
+        0 0 30px rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+}
+
+/* Keyframes for the gentle "float" effect */
+@keyframes floatingImage {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+    .photo-gallery img {
+        width: 200px;
+        height: 260px;
+    }
+}
+.app-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 100vh;
+    max-height: 850px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 10;
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 24px;
+    padding: 40px 20px;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+}
+
+.title {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    margin-bottom: 15px;
+}
+
+.highlight {
+    color: var(--accent-color);
+    font-size: 3.5rem;
+}
+
+.subtext {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+.btn {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    padding: 12px 30px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.primary-btn {
+    background: #fff;
+    color: var(--primary-color);
+}
+
+.primary-btn:hover {
+    background: var(--accent-color);
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.secondary-btn {
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+.secondary-btn:hover {
+    background: #fff;
+    color: var(--primary-color);
+}
+
+/* --- Page Flow Visibility --- */
+.page {
+    position: absolute;
+    width: 90%;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.95);
+}
+
+.page.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+    position: relative;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- Animations --- */
+.animate-pop { animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+.fade-in-delay { animation: fadeIn 1s ease-in 0.5s forwards; opacity: 0; }
+.pulse { animation: pulse 2s infinite; }
+.glow-text { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px var(--accent-color); }
+
+@keyframes popIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+@keyframes fadeIn { to { opacity: 1; } }
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* --- Cake CSS --- */
+.cake-container {
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 30px;
+}
+
+.cake { position: relative; width: 150px; height: 80px; background: #fff; border-radius: 10px 10px 0 0; box-shadow: inset 0 -10px rgba(0,0,0,0.1); }
+.icing { position: absolute; top: 0; left: 0; width: 100%; height: 30px; background: var(--primary-color); border-radius: 10px 10px 20px 20px; }
+.candle { position: absolute; top: -40px; left: 50%; transform: translateX(-50%); width: 12px; height: 40px; background: repeating-linear-gradient(45deg, #fff, #fff 5px, var(--primary-color) 5px, var(--primary-color) 10px); border-radius: 2px; }
+.flame { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); width: 14px; height: 20px; background: var(--accent-color); border-radius: 50% 50% 20% 20%; box-shadow: 0 0 15px var(--accent-color); animation: flicker 0.5s infinite alternate; transition: opacity 0.5s ease; }
+.flame.extinguished { opacity: 0; animation: none; }
+
+@keyframes flicker {
+    0% { transform: translateX(-50%) scale(1); opacity: 0.9; }
+    100% { transform: translateX(-50%) scale(1.1); opacity: 1; }
+}
+
+/* --- Gallery / Carousel --- */
+.message-carousel { min-height: 40px; margin-bottom: 20px; font-size: 1.2rem; color: #fff; font-weight: 600; }
+.photo-placeholder { width: 100%; height: 200px; background: rgba(255,255,255,0.4); border-radius: 12px; display: flex; justify-content: center; align-items: center; color: #fff; font-weight: bold; border: 2px dashed #fff; }
+
+.mt-2 { margin-top: 20px; }
